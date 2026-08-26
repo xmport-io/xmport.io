@@ -66,6 +66,17 @@ export const PROJECTS: ProjectData[] = [
       throughput: '1.68 TFLOPS // 60 FPS LOCK',
       protocol: 'UDP/QUIC MESH-NET',
     }
+  },
+  {
+    id: 'FRAMES_07',
+    sysId: 'SYS_ID: 7741',
+    title: 'ARC_ROBOTICS',
+    status: 'DEPLOYED',
+    description: 'INDUSTRIAL ROBOTIC BRAND IDENTITY',
+    specs: {
+      throughput: '2.10 TFLOPS // 60 FPS LOCK',
+      protocol: 'BRASS HANDS DESIGN OPS',
+    }
   }
 ];
 

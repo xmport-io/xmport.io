@@ -1,7 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { Plus, Minus } from 'lucide-react';
-import { Lottie, LottieHandle } from 'lottie-react';
-import { cokPlayButtonAnimation } from '../assets/cok_play_button';
 import { playTacticalBlip, playSelectBuzz } from '../utils/audio';
 
 export interface GalleryVideo {
@@ -47,6 +45,12 @@ export const GALLERY_VIDEOS: GalleryVideo[] = [
     embedUrl:
       'https://framerate.tv/embed/1809aa9d-2b45-4773-869e-3fecbfef2ea8?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
   },
+  {
+    id: 'FRAMES_07',
+    title: 'FEATURED REEL 07',
+    embedUrl:
+      'https://framerate.tv/embed/5822e22e-4c43-495c-971a-f0cf1ef06ab7?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
+  },
 ];
 
 interface HeroVisualCoreProps {
@@ -64,22 +68,10 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
   onPrev,
   onNext,
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const lottieRef = useRef<LottieHandle>(null);
-
   const handleStartClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     playTacticalBlip(1800, 0.08);
     onStart();
-  };
-
-  const handleMouseEnter = () => {
-    setIsHovered(true);
-    playTacticalBlip(1200, 0.02);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
   };
 
   const handlePrev = (e: React.MouseEvent) => {
@@ -115,82 +107,71 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
       {!hasStarted && (
         <div
           id="hero-intro-splash"
-          className="absolute inset-0 z-40 bg-black flex items-center justify-center p-4 sm:p-8 pt-14 sm:pt-8 select-none transition-opacity duration-300 overflow-y-auto"
+          className="absolute inset-x-0 bottom-0 top-11 sm:top-0 z-40 bg-black flex items-center justify-center p-3 sm:p-8 select-none transition-opacity duration-300 overflow-y-auto"
         >
-          <div className="flex flex-col md:flex-row items-center justify-center gap-5 sm:gap-8 lg:gap-12 max-w-5xl my-auto">
-            {/* Title & Role Block */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-2 sm:gap-8 lg:gap-12 max-w-5xl my-auto w-full">
+            {/* Title & Role Block - strictly right-aligned across mobile and desktop */}
             <div 
-              className="flex flex-col items-center md:items-end text-center md:text-right"
-              style={{ width: '400px', maxWidth: '100%' }}
+              className="flex flex-col items-end text-right w-full sm:w-[400px] max-w-full px-2 sm:px-0"
             >
-              <h2
-                className="font-normal uppercase text-white inline-block origin-right"
-                style={{ 
-                  fontFamily: "'Libertinus Mono', monospace", 
-                  letterSpacing: '-0.05em',
-                  fontSize: '96px',
-                  width: '800px',
-                  maxWidth: 'none',
-                  textAlign: 'right',
-                  lineHeight: '63px',
-                  transform: 'scaleX(0.47)'
-                }}
-              >
-                ANDY O XMPORT
-              </h2>
-              <span
-                className="text-base sm:text-lg md:text-xl lg:text-2xl uppercase mt-1.5 inline-block"
-                style={{ 
-                  fontFamily: "'Chivo Mono', monospace", 
-                  fontWeight: 100, 
-                  letterSpacing: '-0.05em',
-                  textAlign: 'right',
-                  width: '376px',
-                  maxWidth: '100%',
-                  backgroundColor: '#9fff19',
-                  color: '#000000',
-                  paddingRight: '11px'
-                }}
-              >
-                MOTION DIRECTOR
-              </span>
+              <div className="w-full flex justify-end overflow-hidden sm:overflow-visible">
+                <h2
+                  className="font-normal uppercase text-white inline-block origin-right whitespace-nowrap"
+                  style={{ 
+                    fontFamily: "'Libertinus Mono', monospace", 
+                    letterSpacing: '-0.05em',
+                    fontSize: '67px',
+                    textAlign: 'right',
+                    lineHeight: '0.85em',
+                    transform: 'scaleX(0.47)'
+                  }}
+                >
+                  ANDY O XMPORT
+                </h2>
+              </div>
+              <div className="w-full flex justify-end mt-1 sm:mt-2">
+                <span
+                  className="text-xs sm:text-lg md:text-xl lg:text-2xl uppercase inline-block whitespace-nowrap"
+                  style={{ 
+                    fontFamily: "'Chivo Mono', monospace", 
+                    fontWeight: 100, 
+                    letterSpacing: '-0.05em',
+                    textAlign: 'right',
+                    width: 'clamp(200px, 70vw, 376px)',
+                    maxWidth: '100%',
+                    backgroundColor: '#9fff19',
+                    color: '#000000',
+                    paddingRight: '11px',
+                    paddingLeft: '8px',
+                    paddingTop: '2px',
+                    paddingBottom: '2px'
+                  }}
+                >
+                  MOTION DIRECTOR
+                </span>
+              </div>
             </div>
 
             {/* Interactive Neon Green Plus Button Target */}
-            {/* Interactive Neon Green Plus Button Target (Animates on Hover) */}
             <button
               id="start-journey-plus-btn"
               type="button"
               onClick={handleStartClick}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              className="relative w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 flex items-center justify-center text-[#9fff19] select-none leading-none cursor-pointer p-1 rounded-none hover:scale-110 active:scale-95 transition-transform duration-150 focus:outline-none focus:ring-1 focus:ring-[#9fff19]"
+              className="relative flex items-center justify-center text-[#9fff19] select-none leading-none cursor-pointer p-0.5 sm:p-2 rounded-none hover:scale-110 active:scale-95 transition-all duration-150 focus:outline-none focus:ring-1 focus:ring-[#9fff19] mt-1 sm:mt-0"
               style={{ textAlign: 'center' }}
               title="Click to start"
               aria-label="Start portfolio journey"
             >
-              {isHovered ? (
-                <div className="w-full h-full flex items-center justify-center pointer-events-none">
-                  <Lottie
-                    lottieRef={lottieRef}
-                    src={cokPlayButtonAnimation}
-                    loop={true}
-                    autoplay={true}
-                    className="w-full h-full"
-                  />
-                </div>
-              ) : (
-                <span className="text-4xl sm:text-5xl lg:text-6xl font-bold hover:text-white transition-colors duration-150">
-                  +
-                </span>
-              )}
+              <span className="text-3xl sm:text-5xl lg:text-6xl font-bold hover:text-white transition-colors duration-150 leading-none">
+                +
+              </span>
             </button>
 
             {/* Click to start CTA Label */}
-            <div className="text-center md:text-left">
+            <div className="text-center md:text-left -mt-0.5 sm:mt-0">
               <span
-                className="text-xs sm:text-sm lg:text-base font-normal uppercase text-white/70 inline-block"
-                style={{ fontFamily: "'Chivo Mono', monospace", letterSpacing: '-0.05em' }}
+                className="text-[10px] sm:text-sm lg:text-base font-normal uppercase text-white/70 inline-block tracking-wider leading-tight"
+                style={{ fontFamily: "'Chivo Mono', monospace", letterSpacing: '-0.03em' }}
               >
                 CLICK TO START THE JOURNEY
               </span>

@@ -47,6 +47,11 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
         className="bg-[#101010] p-3 sm:p-5 md:p-6 lg:p-7 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#333333] relative overflow-hidden select-none font-mono"
         onMouseEnter={() => playTacticalBlip(950, 0.02)}
       >
+        {/* Special Glowing Line Effect from above (matching active nav button glow) */}
+        <div 
+          className="absolute top-0 left-0 right-0 h-[2px] bg-[#9fff19] shadow-[0_0_8px_#9fff19] pointer-events-none z-10" 
+        />
+
         {/* Top Info Header */}
         <div>
           <div className="flex items-center justify-between mb-1">
@@ -84,11 +89,12 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
           {/* Large Title for Active Project or Binary */}
           <h2 
             id="current-work-title"
-            className="text-lg sm:text-2xl lg:text-3xl uppercase text-white mt-0.5 truncate"
+            className="text-lg sm:text-2xl lg:text-3xl uppercase text-white mt-0.5 truncate text-left"
             style={{ 
-              fontFamily: "'Chivo Mono', monospace",
-              fontWeight: 100,
-              lineHeight: '28px'
+              fontFamily: "'Syne', sans-serif",
+              fontWeight: 'bold',
+              lineHeight: '28px',
+              textAlign: 'left'
             }}
           >
             {binaryTitle}
@@ -174,7 +180,7 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
          ========================================================================= */}
       <div 
         id="box-2-action"
-        className="bg-[#9fff19] p-4 sm:p-6 lg:p-7 flex flex-col justify-between relative overflow-hidden select-none text-black font-mono"
+        className="bg-[#9fff19] shadow-[inset_0_10px_16px_-6px_rgba(0,0,0,0.45)] p-4 sm:p-5 lg:p-6 pb-6 sm:pb-7 lg:pb-8 flex flex-col justify-between relative overflow-hidden select-none text-black font-mono"
         onMouseEnter={() => playTacticalBlip(1200, 0.02)}
       >
         {/* Top Action Indicators & Hazard Micro-Mark */}
@@ -210,7 +216,7 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
          </div>
 
         {/* Primary Call to Action: Massive Bold "CONTACT" Button */}
-        <div className="my-2 sm:my-3">
+        <div className="my-1.5 sm:my-2">
           <div
             id="action-contact-me-btn"
             onClick={() => playSelectBuzz()}
@@ -219,13 +225,12 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
           >
             <div className="flex items-center justify-between">
               <span 
-                className="uppercase text-black flex items-center font-normal"
+                className="uppercase text-black flex items-center"
                 style={{ 
-                  fontFamily: "'Chivo Mono', monospace", 
-                  fontSize: '20px', 
-                  lineHeight: '23.5px', 
-                  height: '20px', 
-                  fontWeight: 'normal' 
+                  fontFamily: "'Syne', sans-serif", 
+                  fontWeight: 'bold',
+                  fontSize: '30px', 
+                  lineHeight: '28px'
                 }}
               >
                 CONTACTS
@@ -236,7 +241,7 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
             </div>
             
             <p 
-              className="text-[10px] sm:text-xs font-normal text-black/80 mt-1.5 uppercase"
+              className="text-[10px] sm:text-xs font-normal text-black/80 mt-1 uppercase"
               style={{ fontFamily: "'Chivo Mono', monospace" }}
             >
               INITIATE ENCRYPTED DIRECT TRANSMISSION // OPEN FOR PROJECTS & DIRECTIVES
@@ -249,7 +254,7 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
            ===================================================================== */}
         <div 
           id="anchored-social-footer"
-          className="border-t-2 border-black pt-2 mt-auto"
+          className="border-t-2 border-black pt-2 mt-auto pb-1 sm:pb-2"
         >
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-0 border border-dotted border-black bg-[#9fff19]">
             {SOCIAL_LINKS.map((link, idx) => {
