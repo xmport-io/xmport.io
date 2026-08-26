@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ProjectData } from '../types';
 import { SOCIAL_LINKS } from '../data/projects';
 import { playTacticalBlip, playSelectBuzz } from '../utils/audio';
+import { ArrowLottie } from './ArrowLottie';
 
 interface BottomSplitBoxesProps {
   hasStarted?: boolean;
@@ -235,8 +236,8 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
               >
                 CONTACTS
               </span>
-              <span className="hidden sm:inline-block text-2xl sm:text-4xl font-normal text-black font-mono">
-                ↗
+              <span className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 text-black">
+                <ArrowLottie className="w-full h-full" />
               </span>
             </div>
             

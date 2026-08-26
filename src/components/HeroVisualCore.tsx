@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { playTacticalBlip, playSelectBuzz } from '../utils/audio';
+import { CokCrossLottie } from './CokCrossLottie';
 
 export interface GalleryVideo {
   id: string;
@@ -68,10 +69,22 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
   onPrev,
   onNext,
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   const handleStartClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setIsHovered(true);
     playTacticalBlip(1800, 0.08);
     onStart();
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    playTacticalBlip(1200, 0.02);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
   };
 
   const handlePrev = (e: React.MouseEvent) => {
@@ -131,10 +144,11 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
               </div>
               <div className="w-full flex justify-end mt-1 sm:mt-2">
                 <span
-                  className="text-xs sm:text-lg md:text-xl lg:text-2xl uppercase inline-block whitespace-nowrap"
+                  className="uppercase inline-block whitespace-nowrap"
                   style={{ 
-                    fontFamily: "'Chivo Mono', monospace", 
-                    fontWeight: 100, 
+                    fontFamily: "'Syne', sans-serif", 
+                    fontWeight: 'bold', 
+                    fontSize: '16px',
                     letterSpacing: '-0.05em',
                     textAlign: 'right',
                     width: 'clamp(200px, 70vw, 376px)',
@@ -152,19 +166,21 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
               </div>
             </div>
 
-            {/* Interactive Neon Green Plus Button Target */}
+            {/* Interactive Neon Green Plus Button Target with Looping Lottie */}
             <button
               id="start-journey-plus-btn"
               type="button"
               onClick={handleStartClick}
-              className="relative flex items-center justify-center text-[#9fff19] select-none leading-none cursor-pointer p-0.5 sm:p-2 rounded-none hover:scale-110 active:scale-95 transition-all duration-150 focus:outline-none focus:ring-1 focus:ring-[#9fff19] mt-1 sm:mt-0"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onTouchStart={() => setIsHovered(true)}
+              onTouchEnd={() => setIsHovered(false)}
+              className="group relative w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 flex items-center justify-center select-none leading-none cursor-pointer p-0.5 sm:p-1 rounded-none focus:outline-none focus:ring-1 focus:ring-[#9fff19] mt-1 sm:mt-0"
               style={{ textAlign: 'center' }}
               title="Click to start"
               aria-label="Start portfolio journey"
             >
-              <span className="text-3xl sm:text-5xl lg:text-6xl font-bold hover:text-white transition-colors duration-150 leading-none">
-                +
-              </span>
+              <CokCrossLottie isHovered={isHovered} />
             </button>
 
             {/* Click to start CTA Label */}
