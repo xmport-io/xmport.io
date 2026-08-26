@@ -39,6 +39,12 @@ export const GALLERY_VIDEOS: GalleryVideo[] = [
     embedUrl:
       'https://framerate.tv/embed/722e948d-b8be-4f83-82a9-ce904b099805?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
   },
+  {
+    id: 'FRAMES_06',
+    title: 'FEATURED REEL 06',
+    embedUrl:
+      'https://framerate.tv/embed/1809aa9d-2b45-4773-869e-3fecbfef2ea8?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
+  },
 ];
 
 interface HeroVisualCoreProps {
@@ -70,8 +76,13 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
 
   const activeVideo = GALLERY_VIDEOS[currentIdx] || GALLERY_VIDEOS[0];
 
-  // When started, unmute audio on the active video
-  const activeEmbedUrl = hasStarted
+  // Ambient backdrop must always remain muted
+  const ambientEmbedUrl = activeVideo.embedUrl.includes('muted=')
+    ? activeVideo.embedUrl.replace(/muted=\d+/, 'muted=1')
+    : `${activeVideo.embedUrl}&muted=1`;
+
+  // Foreground main video is unmuted once visitor clicks to start
+  const mainEmbedUrl = hasStarted
     ? activeVideo.embedUrl.replace('muted=1', 'muted=0')
     : activeVideo.embedUrl;
 
@@ -89,20 +100,20 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
       {!hasStarted && (
         <div
           id="hero-intro-splash"
-          className="absolute inset-0 z-40 bg-black flex items-center justify-center p-6 cursor-pointer select-none transition-opacity duration-300"
+          className="absolute inset-0 z-40 bg-black flex items-center justify-center p-4 sm:p-8 pt-14 sm:pt-8 cursor-pointer select-none transition-opacity duration-300 overflow-y-auto"
           onClick={onStart}
         >
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-10 max-w-5xl">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-5 sm:gap-8 lg:gap-12 max-w-5xl my-auto">
             {/* Title & Role Block */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h2
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-normal uppercase text-white leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal uppercase text-white leading-tight"
                 style={{ fontFamily: "'Chivo Mono', monospace", letterSpacing: '-0.05em' }}
               >
                 ANDY O XMPORT
               </h2>
               <span
-                className="text-sm sm:text-base md:text-lg lg:text-xl font-normal uppercase text-white mt-1"
+                className="text-base sm:text-lg md:text-xl lg:text-2xl font-normal uppercase text-white mt-1.5"
                 style={{ fontFamily: "'Chivo Mono', monospace", letterSpacing: '-0.05em' }}
               >
                 MOTION DIRECTOR
@@ -166,8 +177,8 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
           aria-hidden="true"
         >
           <iframe
-            key={`ambient-${activeVideo.id}-${hasStarted ? 'live' : 'idle'}`}
-            src={activeEmbedUrl}
+            key={`ambient-${activeVideo.id}`}
+            src={ambientEmbedUrl}
             tabIndex={-1}
             className="w-full h-full object-cover scale-150 pointer-events-none border-0"
             style={{
@@ -183,7 +194,7 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
         {/* Foreground Sharp Video */}
         <iframe
           key={`main-${activeVideo.id}-${hasStarted ? 'live' : 'idle'}`}
-          src={activeEmbedUrl}
+          src={mainEmbedUrl}
           width="1920"
           height="1080"
           className="relative z-10 aspect-video w-full h-full max-w-full max-h-full border-0 drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]"

@@ -55,6 +55,17 @@ export const PROJECTS: ProjectData[] = [
       throughput: '1.45 TFLOPS // 120 FPS LOCK',
       protocol: 'OPTICAL FIBER // DIRECT',
     }
+  },
+  {
+    id: 'FRAMES_06',
+    sysId: 'SYS_ID: 3180',
+    title: 'NEURAL PULSE',
+    status: 'DECEASED',
+    description: 'BORN, DIED, BORN, REPEAT',
+    specs: {
+      throughput: '1.68 TFLOPS // 60 FPS LOCK',
+      protocol: 'UDP/QUIC MESH-NET',
+    }
   }
 ];
 

@@ -6,13 +6,11 @@ import { playTacticalBlip, playSelectBuzz } from '../utils/audio';
 interface BottomSplitBoxesProps {
   hasStarted?: boolean;
   activeProject: ProjectData;
-  onOpenContact: () => void;
 }
 
 export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
   hasStarted = false,
-  activeProject,
-  onOpenContact
+  activeProject
 }) => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [binaryTick, setBinaryTick] = useState<number>(0);
@@ -26,15 +24,15 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
     return () => clearInterval(interval);
   }, [hasStarted]);
 
-  // Binary representations
-  const binarySysId = !hasStarted ? (binaryTick % 2 === 0 ? '01010011 01011001' : '01001001 01000100') : activeProject.sysId;
-  const binaryTitle = !hasStarted ? (binaryTick % 3 === 0 ? '01000001 01001110 01000100 01011001' : '01011000 01001101 01010000 01001111') : activeProject.title;
+  // Binary representations - trimmed to single concise lines to prevent mobile overflow
+  const binarySysId = !hasStarted ? (binaryTick % 2 === 0 ? '01010011' : '01001001') : activeProject.sysId;
+  const binaryTitle = !hasStarted ? (binaryTick % 3 === 0 ? '01000001 01001110' : '01011000 01001101') : activeProject.title;
   const binaryDescription = !hasStarted 
-    ? '01010011 01011001 01010011 01010100 01000101 01001101 00100000 01001001 01001110 01001001 01010100 01001001 01000001 01010100 01001001 01001110 01000111 00100000 01010011 01000101 01010001 01010101 01000101 01001110 01000011 01000101 00101110 00101110 00101110'
+    ? '01010011 01011001 01010011 01010100 01000101 01001101'
     : activeProject.description;
-  const binaryThroughput = !hasStarted ? (binaryTick % 2 === 0 ? '01001111 01010000' : '01010100 01000110') : activeProject.specs.throughput;
-  const binaryStatus = !hasStarted ? '01001001 01001110 01001001 01010100' : activeProject.status;
-  const binaryProtocol = !hasStarted ? '01000010 01001001 01001110 01000001 01010010 01011001' : activeProject.specs.protocol;
+  const binaryThroughput = !hasStarted ? (binaryTick % 2 === 0 ? '01001111' : '01010100') : activeProject.specs.throughput;
+  const binaryStatus = !hasStarted ? '01001001' : activeProject.status;
+  const binaryProtocol = !hasStarted ? '01000010' : activeProject.specs.protocol;
 
   return (
     <div 
@@ -46,13 +44,13 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
          ========================================================================= */}
       <div 
         id="box-1-information"
-        className="bg-[#101010] p-4 sm:p-6 lg:p-7 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#333333] relative overflow-hidden select-none font-mono"
+        className="bg-[#101010] p-3 sm:p-5 md:p-6 lg:p-7 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#333333] relative overflow-hidden select-none font-mono"
         onMouseEnter={() => playTacticalBlip(950, 0.02)}
       >
         {/* Top Info Header */}
         <div>
-          <div className="flex items-center justify-between mb-1.5">
-            <div className="flex items-center gap-2">
+          <div className="flex items-center justify-between mb-1">
+            <div className="flex items-center gap-2 overflow-hidden">
               <svg 
                 viewBox="0 0 175.22 175.22" 
                 className="w-3.5 h-3.5 shrink-0" 
@@ -62,14 +60,14 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
                 <path d="M88.67,11.1c-17.51-.2-33.7,5.41-46.76,15.03-10.87,8-10.03,24.49,1.63,31.27l.12.07c6.44,3.75,14.49,3.3,20.49-1.12,6.79-5,15.23-7.89,24.34-7.73,21.15.38,38.48,17.49,39.11,38.63.51,16.82-9.41,31.4-23.78,37.73-6.86,3.03-11.4,9.7-11.41,17.2v.14c-.02,13.44,13.74,22.55,26.07,17.21,27.13-11.75,46.21-38.59,46.65-69.93.61-42.67-33.81-78.02-76.48-78.51ZM47.88,88.49c0-1.54.09-3.06.26-4.56.84-7.4-2.74-14.6-9.17-18.34l-.12-.07c-11.7-6.8-26.47.7-27.99,14.14-.33,2.89-.5,5.84-.5,8.82,0,31.76,19.12,59.04,46.48,70.98,12.35,5.39,26.19-3.64,26.2-17.12v-.15c0-7.38-4.29-14.17-11.07-17.09-14.16-6.12-24.08-20.21-24.08-36.62Z" />
               </svg>
               <span 
-                className="text-[11px] sm:text-xs text-[#999999] uppercase font-normal"
+                className="text-[11px] sm:text-xs text-[#999999] uppercase font-normal whitespace-nowrap"
                 style={{ fontFamily: "'Chivo Mono', monospace" }}
               >
                 CURRENT DIRECTORY
               </span>
               <span className="text-[#444444] text-xs" style={{ fontFamily: "'Chivo Mono', monospace" }}>/</span>
               <span 
-                className="text-[11px] sm:text-xs text-[#9fff19] font-normal"
+                className="text-[11px] sm:text-xs text-[#9fff19] font-normal truncate"
                 style={{ fontFamily: "'Chivo Mono', monospace" }}
               >
                 {binarySysId}
@@ -86,17 +84,17 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
           {/* Large Title for Active Project or Binary */}
           <h2 
             id="current-work-title"
-            className="text-xl sm:text-2xl lg:text-3xl font-normal text-white uppercase mt-0.5 break-all"
+            className="text-lg sm:text-2xl lg:text-3xl font-normal text-white uppercase mt-0.5 truncate"
             style={{ 
               fontFamily: "'Chivo Mono', monospace",
-              lineHeight: '34.5px'
+              lineHeight: '28px'
             }}
           >
             {binaryTitle}
           </h2>
 
           <p 
-            className="text-[11px] sm:text-xs text-[#aaaaaa] mt-2 leading-relaxed line-clamp-2 max-w-xl uppercase break-all"
+            className="text-[10px] sm:text-xs text-[#aaaaaa] mt-1 sm:mt-2 leading-tight sm:leading-relaxed truncate uppercase"
             style={{ fontFamily: "'Chivo Mono', monospace" }}
           >
             {binaryDescription}
@@ -105,7 +103,7 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
 
         {/* Faux-Terminal Data Strings for Flavor */}
         <div 
-          className="my-3 sm:my-4 grid grid-cols-3 sm:grid-cols-3 gap-2 p-2.5 bg-black border border-[#262626] text-[9px] sm:text-[10px]"
+          className="my-2 sm:my-3.5 grid grid-cols-3 sm:grid-cols-3 gap-2 p-2 bg-black border border-[#262626] text-[8.5px] sm:text-[10px]"
           style={{ fontFamily: "'Chivo Mono', monospace" }}
         >
           <div>
@@ -212,14 +210,12 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
 
         {/* Primary Call to Action: Massive Bold "CONTACT ME" Button */}
         <div className="my-2 sm:my-3">
-          <button
+          <a
             id="action-contact-me-btn"
-            onClick={() => {
-              playSelectBuzz();
-              onOpenContact();
-            }}
+            href="mailto:work@xmport.io"
+            onClick={() => playSelectBuzz()}
             onMouseEnter={() => playTacticalBlip(1500, 0.03)}
-            className="w-full text-left group cursor-pointer focus:outline-none"
+            className="block w-full text-left group cursor-pointer focus:outline-none"
           >
             <div className="flex items-center justify-between">
               <span 
@@ -245,7 +241,7 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
             >
               INITIATE ENCRYPTED DIRECT TRANSMISSION // OPEN FOR PROJECTS & DIRECTIVES
             </p>
-          </button>
+          </a>
         </div>
 
         {/* =====================================================================
