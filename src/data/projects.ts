@@ -5,7 +5,7 @@ export const PROJECTS: ProjectData[] = [
     id: 'FRAMES_01',
     sysId: 'SYS_ID: 8993',
     title: 'DRAGUNAUT',
-    status: 'ELIMINATED',
+    status: 'DEPLOYED',
     description: 'AIR DEFENSE JUGGERNAUT BRAND MOTION',
     specs: {
       throughput: '1.24 TFLOPS // 12 FPS LOCK',
@@ -26,9 +26,9 @@ export const PROJECTS: ProjectData[] = [
   {
     id: 'FRAMES_03',
     sysId: 'SYS_ID: 6720',
-    title: 'PROJECT 03',
+    title: 'MED-EVAC',
     status: 'DEPLOYED',
-    description: 'PROJECT DESCRIPTION PLACEHOLDER',
+    description: 'MEDICAL TRIAGE BRAND MOTION',
     specs: {
       throughput: '1.10 TFLOPS // 60 FPS LOCK',
       protocol: 'UDP/QUIC MESH-NET',
@@ -37,9 +37,9 @@ export const PROJECTS: ProjectData[] = [
   {
     id: 'FRAMES_04',
     sysId: 'SYS_ID: 5519',
-    title: 'PROJECT 04',
-    status: 'DEPLOYED',
-    description: 'PROJECT DESCRIPTION PLACEHOLDER',
+    title: 'ASCENSION',
+    status: 'HEISRISEN',
+    description: 'GOD IS GOOD, RUNNING WILL MAKE YOU NOTHING',
     specs: {
       throughput: '920K SAMPLES/SEC',
       protocol: 'CAN_BUS v2 / ARINC_429',
@@ -48,9 +48,9 @@ export const PROJECTS: ProjectData[] = [
   {
     id: 'FRAMES_05',
     sysId: 'SYS_ID: 9042',
-    title: 'PROJECT 05',
+    title: 'MINARIS',
     status: 'DEPLOYED',
-    description: 'PROJECT DESCRIPTION PLACEHOLDER',
+    description: 'YOU ARE THREATENING',
     specs: {
       throughput: '1.45 TFLOPS // 120 FPS LOCK',
       protocol: 'OPTICAL FIBER // DIRECT',

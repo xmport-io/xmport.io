@@ -23,13 +23,13 @@ export const TopNavbar: React.FC = () => {
   return (
     <header 
       id="top-navbar"
-      className="absolute top-0 left-0 right-0 h-10 sm:h-12 w-full bg-transparent border-0 flex items-center justify-between px-3 sm:px-6 select-none z-30 pointer-events-none font-mono"
+      className="absolute top-0 left-0 right-0 h-10 sm:h-12 w-full bg-transparent border-0 flex items-center justify-between px-3 sm:px-6 select-none z-50 pointer-events-none font-mono"
     >
       {/* Top Left Page Title */}
       <div id="navbar-brand" className="flex items-center gap-2 pointer-events-none">
         <h1 
           id="navbar-title"
-          className="text-base sm:text-lg lg:text-xl tracking-widest font-black uppercase text-[#9fff19] leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
+          className="text-base sm:text-lg lg:text-xl font-black uppercase text-[#9fff19] leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]"
           style={{ fontFamily: "'Doto', sans-serif" }}
         >
           XMPORT
@@ -43,7 +43,7 @@ export const TopNavbar: React.FC = () => {
       >
         <span className="w-1.5 h-1.5 bg-[#9fff19] animate-terminal-blink"></span>
         <span 
-          className="tracking-wider font-normal"
+          className="font-normal"
           style={{ fontFamily: "'Chivo Mono', monospace" }}
         >
           {timeString}
