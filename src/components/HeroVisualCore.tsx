@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { playTacticalBlip, playSelectBuzz } from '../utils/audio';
 import { CokCrossLottie } from './CokCrossLottie';
+import { XmportLogo } from './XmportLogo';
 
 export interface GalleryVideo {
   id: string;
@@ -116,11 +117,29 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
       id="hero-visual-core"
       className="relative flex-1 min-h-0 w-full bg-[#000000] border-b border-[#333333] overflow-hidden flex items-center justify-center group/hero"
     >
+      {/* DESKTOP-ONLY LEFT VERTICAL GREEN (#9fff19) BAR WITH XMPORT LOGO */}
+      <aside
+        id="hero-left-green-bar"
+        aria-label="XMPORT Brand Bar"
+        className="hidden xl:flex absolute top-0 bottom-0 left-0 w-28 lg:w-32 bg-[#9fff19] z-50 flex-col items-center justify-between py-3.5 px-3 select-none pointer-events-none"
+      >
+        {/* XMPORT Logo in rich black sitting inside the green bar */}
+        <div className="w-full flex items-center justify-center pt-0.5">
+          <XmportLogo
+            id="desktop-green-bar-xmport-logo"
+            className="h-4 lg:h-4.5 w-auto fill-black shrink-0"
+          />
+        </div>
+
+        {/* Bottom decorative anchor point */}
+        <div className="w-full" />
+      </aside>
+
       {/* INITIAL VISITOR INTRO SPLASH OVERLAY */}
       {!hasStarted && (
         <div
           id="hero-intro-splash"
-          className="absolute inset-x-0 bottom-0 top-11 sm:top-0 z-40 bg-black flex items-center justify-center p-3 sm:p-8 select-none transition-opacity duration-300 overflow-y-auto"
+          className="absolute inset-x-0 bottom-0 top-11 sm:top-0 md:top-12 xl:top-0 z-40 bg-black flex items-center justify-center p-3 sm:p-8 md:p-8 xl:pl-36 select-none transition-opacity duration-300 overflow-y-auto"
         >
           <div className="flex flex-col md:flex-row items-center justify-center gap-2 sm:gap-8 lg:gap-12 max-w-5xl my-auto w-full">
             {/* Title & Role Block - strictly right-aligned across mobile and desktop */}
@@ -196,14 +215,14 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
         </div>
       )}
 
-      {/* REEL INDICATOR HUD - TOP CENTER (HIDDEN IN MOBILE VIEW & BEFORE START) */}
+      {/* REEL INDICATOR HUD - TOP CENTER (DESKTOP ONLY; TABLET USES THE TOP GREEN HEADER) */}
       {hasStarted && (
         <div 
           id="reel-indicator-badge"
           style={{ fontFamily: "'Chivo Mono', monospace" }}
-          className="hidden sm:flex absolute top-2.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none px-3 py-1 bg-black/80 border border-[#333333] text-[10px] sm:text-xs font-normal text-[#9fff19] tracking-widest uppercase items-center gap-2 backdrop-blur-sm shadow-sm"
+          className="hidden xl:flex absolute top-2.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none px-3 py-1 bg-black/80 border border-[#333333] text-[10px] sm:text-xs font-normal text-[#9fff19] tracking-widest uppercase items-center gap-2 backdrop-blur-sm shadow-sm"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#9fff19] animate-pulse"></span>
+          <span className="w-1.5 h-1.5 bg-[#9fff19] animate-terminal-blink flex-shrink-0"></span>
           <span style={{ fontFamily: "'Chivo Mono', monospace" }}>
             REEL {String(currentIdx + 1).padStart(2, '0')} / {String(GALLERY_VIDEOS.length).padStart(2, '0')}
           </span>
@@ -218,7 +237,7 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
           onClick={handlePrev}
           aria-label="Previous Video"
           title="Previous Reel (-)"
-          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-1.5 bg-transparent border-0 cursor-pointer transition-transform duration-100 flex items-center justify-center group active:scale-90"
+          className="absolute left-2 sm:left-4 md:left-4 xl:left-36 top-1/2 -translate-y-1/2 z-20 p-1.5 bg-transparent border-0 cursor-pointer transition-transform duration-100 flex items-center justify-center group active:scale-90"
         >
           <Minus
             className="w-7 h-7 sm:w-9 sm:h-9 stroke-[3] transition-transform duration-75 group-hover:scale-125 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"

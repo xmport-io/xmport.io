@@ -34,8 +34,12 @@ export default function App() {
     >
       {/* MAIN CONTENT AREA */}
       <main className="relative flex-1 flex flex-col h-full w-full overflow-hidden font-mono">
-        {/* TOP NAVBAR OVERLAY (CLOCK & LOGO PASS-THROUGH) */}
-        <TopNavbar />
+        {/* TOP NAVBAR OVERLAY (CLOCK, BRAND & TABLET GREEN HEADER) */}
+        <TopNavbar
+          hasStarted={hasStarted}
+          currentIdx={currentReelIdx}
+          totalVideos={GALLERY_VIDEOS.length}
+        />
 
         {/* HERO SECTION (SPLASH OVERLAY & GALLERY REELS) */}
         <HeroVisualCore
