@@ -66,9 +66,10 @@ export const ProjectNavigationBar: React.FC<ProjectNavigationBarProps> = ({
 
               {/* Status Dot / Indicator */}
               <span 
-                className={`text-[9px] sm:text-[10px] shrink-0 font-bold ${
+                className={`text-[9px] sm:text-[10px] shrink-0 font-normal ${
                   isActive ? 'text-[#9fff19]' : 'text-[#444444] group-hover:text-[#888888]'
                 }`}
+                style={{ fontFamily: "'Chivo Mono', monospace" }}
               >
                 {isActive ? '▸' : `${String(idx + 1).padStart(2, '0')}.`}
               </span>
@@ -76,10 +77,10 @@ export const ProjectNavigationBar: React.FC<ProjectNavigationBarProps> = ({
               {/* ID & Title */}
               <div className="flex items-center gap-1 sm:gap-1.5 truncate">
                 <span 
-                  className={`text-[10px] sm:text-[11px] font-bold uppercase tracking-tight ${
+                  className={`text-[10px] sm:text-[11px] font-normal uppercase tracking-tight ${
                     isActive ? 'text-[#9fff19]' : 'text-[#999999] group-hover:text-white'
                   }`}
-                  style={{ fontFamily: "'Chivo Mono', monospace" }}
+                  style={{ fontFamily: "'Chivo Mono', monospace", fontWeight: 'normal' }}
                 >
                   {project.id}
                 </span>
@@ -91,10 +92,15 @@ export const ProjectNavigationBar: React.FC<ProjectNavigationBarProps> = ({
                 </span>
 
                 <span 
-                  className={`text-[10px] sm:text-[11px] font-medium uppercase truncate tracking-tight ${
-                    isActive ? 'text-white font-bold' : 'text-[#777777] group-hover:text-[#cccccc]'
+                  className={`text-[10px] sm:text-[11px] font-normal uppercase truncate tracking-tight ${
+                    isActive ? 'text-white' : 'text-[#777777] group-hover:text-[#cccccc]'
                   }`}
-                  style={{ fontFamily: "'Chivo Mono', monospace" }}
+                  style={{ 
+                    fontFamily: "'Chivo Mono', monospace", 
+                    fontWeight: 'normal',
+                    fontStyle: 'normal',
+                    textDecoration: 'none'
+                  }}
                 >
                   {project.title}
                 </span>

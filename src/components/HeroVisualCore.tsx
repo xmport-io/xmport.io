@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Plus, Minus } from 'lucide-react';
-import { playTacticalBlip } from '../utils/audio';
+import { Lottie, LottieHandle } from 'lottie-react';
+import { cokPlayButtonAnimation } from '../assets/cok_play_button';
+import { playTacticalBlip, playSelectBuzz } from '../utils/audio';
 
 export interface GalleryVideo {
   id: string;
@@ -62,6 +64,24 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
   onPrev,
   onNext,
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const lottieRef = useRef<LottieHandle>(null);
+
+  const handleStartClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    playTacticalBlip(1800, 0.08);
+    onStart();
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    playTacticalBlip(1200, 0.02);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   const handlePrev = (e: React.MouseEvent) => {
     e.stopPropagation();
     playTacticalBlip(1000, 0.03);
@@ -90,45 +110,86 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
     <section
       id="hero-visual-core"
       className="relative flex-1 min-h-0 w-full bg-[#000000] border-b border-[#333333] overflow-hidden flex items-center justify-center group/hero"
-      onClick={() => {
-        if (!hasStarted) {
-          onStart();
-        }
-      }}
     >
       {/* INITIAL VISITOR INTRO SPLASH OVERLAY */}
       {!hasStarted && (
         <div
           id="hero-intro-splash"
-          className="absolute inset-0 z-40 bg-black flex items-center justify-center p-4 sm:p-8 pt-14 sm:pt-8 cursor-pointer select-none transition-opacity duration-300 overflow-y-auto"
-          onClick={onStart}
+          className="absolute inset-0 z-40 bg-black flex items-center justify-center p-4 sm:p-8 pt-14 sm:pt-8 select-none transition-opacity duration-300 overflow-y-auto"
         >
           <div className="flex flex-col md:flex-row items-center justify-center gap-5 sm:gap-8 lg:gap-12 max-w-5xl my-auto">
             {/* Title & Role Block */}
-            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <div 
+              className="flex flex-col items-center md:items-end text-center md:text-right"
+              style={{ width: '400px', maxWidth: '100%' }}
+            >
               <h2
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-normal uppercase text-white leading-tight"
-                style={{ fontFamily: "'Chivo Mono', monospace", letterSpacing: '-0.05em' }}
+                className="font-normal uppercase text-white inline-block origin-right"
+                style={{ 
+                  fontFamily: "'Libertinus Mono', monospace", 
+                  letterSpacing: '-0.05em',
+                  fontSize: '96px',
+                  width: '800px',
+                  maxWidth: 'none',
+                  textAlign: 'right',
+                  lineHeight: '63px',
+                  transform: 'scaleX(0.47)'
+                }}
               >
                 ANDY O XMPORT
               </h2>
               <span
-                className="text-base sm:text-lg md:text-xl lg:text-2xl font-normal uppercase text-white mt-1.5"
-                style={{ fontFamily: "'Chivo Mono', monospace", letterSpacing: '-0.05em' }}
+                className="text-base sm:text-lg md:text-xl lg:text-2xl uppercase mt-1.5 inline-block"
+                style={{ 
+                  fontFamily: "'Chivo Mono', monospace", 
+                  fontWeight: 100, 
+                  letterSpacing: '-0.05em',
+                  textAlign: 'right',
+                  width: '376px',
+                  maxWidth: '100%',
+                  backgroundColor: '#9fff19',
+                  color: '#000000',
+                  paddingRight: '11px'
+                }}
               >
                 MOTION DIRECTOR
               </span>
             </div>
 
-            {/* Neon Green Plus Symbol */}
-            <div className="text-[#9fff19] text-3xl sm:text-4xl lg:text-5xl font-bold select-none leading-none">
-              +
-            </div>
+            {/* Interactive Neon Green Plus Button Target */}
+            {/* Interactive Neon Green Plus Button Target (Animates on Hover) */}
+            <button
+              id="start-journey-plus-btn"
+              type="button"
+              onClick={handleStartClick}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              className="relative w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 flex items-center justify-center text-[#9fff19] select-none leading-none cursor-pointer p-1 rounded-none hover:scale-110 active:scale-95 transition-transform duration-150 focus:outline-none focus:ring-1 focus:ring-[#9fff19]"
+              style={{ textAlign: 'center' }}
+              title="Click to start"
+              aria-label="Start portfolio journey"
+            >
+              {isHovered ? (
+                <div className="w-full h-full flex items-center justify-center pointer-events-none">
+                  <Lottie
+                    lottieRef={lottieRef}
+                    src={cokPlayButtonAnimation}
+                    loop={true}
+                    autoplay={true}
+                    className="w-full h-full"
+                  />
+                </div>
+              ) : (
+                <span className="text-4xl sm:text-5xl lg:text-6xl font-bold hover:text-white transition-colors duration-150">
+                  +
+                </span>
+              )}
+            </button>
 
-            {/* Click to start CTA */}
+            {/* Click to start CTA Label */}
             <div className="text-center md:text-left">
               <span
-                className="text-xs sm:text-sm lg:text-base font-normal uppercase text-white/90 hover:text-[#9fff19] transition-colors duration-150 inline-block"
+                className="text-xs sm:text-sm lg:text-base font-normal uppercase text-white/70 inline-block"
                 style={{ fontFamily: "'Chivo Mono', monospace", letterSpacing: '-0.05em' }}
               >
                 CLICK TO START THE JOURNEY

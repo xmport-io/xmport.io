@@ -17,17 +17,6 @@ export default function App() {
     }
   };
 
-  // Allow clicking anywhere on screen to start journey if not started
-  useEffect(() => {
-    if (hasStarted) return;
-    const handleGlobalClick = () => {
-      handleStartJourney();
-    };
-
-    window.addEventListener('click', handleGlobalClick);
-    return () => window.removeEventListener('click', handleGlobalClick);
-  }, [hasStarted]);
-
   const handlePrevReel = () => {
     setCurrentReelIdx((prev) => (prev - 1 + GALLERY_VIDEOS.length) % GALLERY_VIDEOS.length);
   };
@@ -72,6 +61,44 @@ export default function App() {
         <BottomSplitBoxes
           hasStarted={hasStarted}
           activeProject={activeProject}
+        />
+
+        {/* SVG TEXTURE FILTER (FIGMA-STYLE NOISE EDGE & RASTER BLUR) */}
+        <svg 
+          id="fui-texture-filter-svg"
+          className="fixed w-0 h-0 pointer-events-none opacity-0" 
+          aria-hidden="true" 
+          style={{ position: 'absolute', width: 0, height: 0 }}
+        >
+          <defs>
+            <filter id="fui-text-texture" x="-20%" y="-20%" width="140%" height="140%">
+              {/* Fine turbulence matching Figma Texture Size */}
+              <feTurbulence type="fractalNoise" baseFrequency="0.6 0.2" numOctaves="1" result="noise" />
+              {/* Displacement map for organic noisy jitter along edges - reduced by 50% */}
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.0" xChannelSelector="R" yChannelSelector="G" result="displaced" />
+              {/* Gaussian bloom & soft color bleed - reduced by 50% */}
+              <feGaussianBlur in="displaced" stdDeviation="0.15" result="bloomBleed" />
+              <feGaussianBlur in="displaced" stdDeviation="0.2" result="softCore" />
+              {/* Composite blurred bleeding halo and displaced core */}
+              <feMerge>
+                <feMergeNode in="bloomBleed" />
+                <feMergeNode in="softCore" />
+                <feMergeNode in="displaced" />
+              </feMerge>
+            </filter>
+          </defs>
+        </svg>
+
+        {/* CRT SCANLINES & CINEMATIC NOISE OVERLAY */}
+        <div 
+          id="tactical-crt-scanlines-layer"
+          className="pointer-events-none fixed inset-0 z-50 tactical-scanlines opacity-25 mix-blend-overlay"
+          aria-hidden="true"
+        />
+        <div 
+          id="tactical-grain-layer"
+          className="pointer-events-none fixed -inset-[100%] w-[300%] h-[300%] z-50 tactical-grain animate-grain opacity-[0.11] mix-blend-screen"
+          aria-hidden="true"
         />
       </main>
     </div>

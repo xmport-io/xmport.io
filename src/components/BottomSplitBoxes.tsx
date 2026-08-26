@@ -84,9 +84,10 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
           {/* Large Title for Active Project or Binary */}
           <h2 
             id="current-work-title"
-            className="text-lg sm:text-2xl lg:text-3xl font-normal text-white uppercase mt-0.5 truncate"
+            className="text-lg sm:text-2xl lg:text-3xl uppercase text-white mt-0.5 truncate"
             style={{ 
               fontFamily: "'Chivo Mono', monospace",
+              fontWeight: 100,
               lineHeight: '28px'
             }}
           >

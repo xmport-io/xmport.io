@@ -41,6 +41,51 @@
   100% { opacity: 1; transform: translate(0, 0); }
 }
 
+/* Tactical CRT Scanlines & Film Grain Overlay */
+.tactical-scanlines {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.4)
+  );
+  background-size: 100% 4px;
+}
+
+.tactical-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.2' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1.6 -0.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 55px 55px;
+  background-repeat: repeat;
+}
+
+@keyframes grainShift {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-1%, -1%); }
+  20% { transform: translate(1%, 0.5%); }
+  30% { transform: translate(-0.5%, 1%); }
+  40% { transform: translate(0.5%, -0.5%); }
+  50% { transform: translate(-1%, 0.5%); }
+  60% { transform: translate(1%, -1%); }
+  70% { transform: translate(0%, 1%); }
+  80% { transform: translate(-0.5%, -1%); }
+  90% { transform: translate(1%, 1%); }
+}
+
+.animate-grain {
+  animation: grainShift 0.4s steps(4) infinite;
+}
+
+/* Figma-style Noisy Edge and Soft CRT Texture for all text and SVG elements */
+p, span, h1, h2, h3, h4, h5, h6, a, button, label, svg {
+  filter: url(#fui-text-texture);
+}
+
+/* Maintain crispness for video streams, canvas, and iframe embeds */
+iframe, video, img, canvas {
+  filter: none !important;
+}
+
 /* Custom Scrollbar for terminal boxes */
 ::-webkit-scrollbar {
   width: 4px;
