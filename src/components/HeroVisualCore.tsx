@@ -121,13 +121,13 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
       <aside
         id="hero-left-green-bar"
         aria-label="XMPORT Brand Bar"
-        className="hidden xl:flex absolute top-0 bottom-0 left-0 w-28 lg:w-32 bg-[#9fff19] z-50 flex-col items-center justify-between py-3.5 px-3 select-none pointer-events-none"
+        className="hidden xl:flex absolute top-0 bottom-0 left-0 w-24 bg-[#9fff19] z-50 flex-col items-center justify-between py-6 px-1 select-none pointer-events-none"
       >
-        {/* XMPORT Logo in rich black sitting inside the green bar */}
-        <div className="w-full flex items-center justify-center pt-0.5">
+        {/* XMPORT Logo in rich black sitting inside the green bar, rotated counter-clockwise */}
+        <div className="w-full h-36 flex items-center justify-center pt-2">
           <XmportLogo
             id="desktop-green-bar-xmport-logo"
-            className="h-4 lg:h-4.5 w-auto fill-black shrink-0"
+            className="w-28 sm:w-32 h-auto fill-black -rotate-90 origin-center shrink-0"
           />
         </div>
 
@@ -139,7 +139,7 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
       {!hasStarted && (
         <div
           id="hero-intro-splash"
-          className="absolute inset-x-0 bottom-0 top-11 sm:top-0 md:top-12 xl:top-0 z-40 bg-black flex items-center justify-center p-3 sm:p-8 md:p-8 xl:pl-36 select-none transition-opacity duration-300 overflow-y-auto"
+          className="absolute inset-x-0 bottom-0 top-11 sm:top-0 md:top-12 xl:top-0 z-40 bg-black flex items-center justify-center p-3 sm:p-8 md:p-8 xl:pl-24 select-none transition-opacity duration-300 overflow-y-auto"
         >
           <div className="flex flex-col md:flex-row items-center justify-center gap-2 sm:gap-8 lg:gap-12 max-w-5xl my-auto w-full">
             {/* Title & Role Block - strictly right-aligned across mobile and desktop */}
@@ -220,7 +220,7 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
         <div 
           id="reel-indicator-badge"
           style={{ fontFamily: "'Chivo Mono', monospace" }}
-          className="hidden xl:flex absolute top-2.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none px-3 py-1 bg-black/80 border border-[#333333] text-[10px] sm:text-xs font-normal text-[#9fff19] tracking-widest uppercase items-center gap-2 backdrop-blur-sm shadow-sm"
+          className="hidden xl:flex absolute top-2.5 left-1/2 -translate-x-1/2 xl:left-[calc(50%+3rem)] z-20 pointer-events-none px-3 py-1 bg-black/80 border border-[#333333] text-[10px] sm:text-xs font-normal text-[#9fff19] tracking-widest uppercase items-center gap-2 backdrop-blur-sm shadow-sm"
         >
           <span className="w-1.5 h-1.5 bg-[#9fff19] animate-terminal-blink flex-shrink-0"></span>
           <span style={{ fontFamily: "'Chivo Mono', monospace" }}>
@@ -237,7 +237,7 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
           onClick={handlePrev}
           aria-label="Previous Video"
           title="Previous Reel (-)"
-          className="absolute left-2 sm:left-4 md:left-4 xl:left-36 top-1/2 -translate-y-1/2 z-20 p-1.5 bg-transparent border-0 cursor-pointer transition-transform duration-100 flex items-center justify-center group active:scale-90"
+          className="absolute left-2 sm:left-4 md:left-4 xl:left-28 top-1/2 -translate-y-1/2 z-20 p-1.5 bg-transparent border-0 cursor-pointer transition-transform duration-100 flex items-center justify-center group active:scale-90"
         >
           <Minus
             className="w-7 h-7 sm:w-9 sm:h-9 stroke-[3] transition-transform duration-75 group-hover:scale-125 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
@@ -247,10 +247,10 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
       )}
 
       {/* VIDEO CONTAINER WITH AMBIENT BACKDROP */}
-      <div className="relative w-full h-full flex items-center justify-center bg-black overflow-hidden">
+      <div className="relative w-full h-full pt-11 sm:pt-11 md:pt-12 xl:pt-0 xl:pl-24 flex items-center justify-center bg-black overflow-hidden">
         {/* Ambient Blur Backdrop (YouTube ambient mode effect) */}
         <div 
-          className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden flex items-center justify-center scale-125 opacity-70 blur-3xl"
+          className="absolute inset-0 top-11 sm:top-11 md:top-12 xl:top-0 xl:left-24 w-full h-full pointer-events-none overflow-hidden flex items-center justify-center scale-125 opacity-70 blur-3xl"
           aria-hidden="true"
         >
           <iframe
@@ -268,21 +268,23 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
           />
         </div>
 
-        {/* Foreground Sharp Video */}
-        <iframe
-          key={`main-${activeVideo.id}-${hasStarted ? 'live' : 'idle'}`}
-          src={mainEmbedUrl}
-          width="1920"
-          height="1080"
-          className="relative z-10 aspect-video w-full h-full max-w-full max-h-full border-0 drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]"
-          style={{
-            aspectRatio: '16 / 9',
-            border: 'none',
-          }}
-          allow="autoplay; fullscreen; picture-in-picture"
-          allowFullScreen
-          title={activeVideo.title}
-        />
+        {/* Foreground Sharp Video - Centered Vertically and Horizontally */}
+        <div className="relative z-10 w-full h-full flex items-center justify-center p-2 sm:p-4 md:p-6 xl:p-8 pointer-events-auto">
+          <iframe
+            key={`main-${activeVideo.id}-${hasStarted ? 'live' : 'idle'}`}
+            src={mainEmbedUrl}
+            width="1920"
+            height="1080"
+            className="aspect-video w-auto h-auto max-w-full max-h-full border-0 drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]"
+            style={{
+              aspectRatio: '16 / 9',
+              border: 'none',
+            }}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            title={activeVideo.title}
+          />
+        </div>
       </div>
 
       {/* RIGHT GALLERY CONTROLLER: PLUS (+) SVG ICON */}

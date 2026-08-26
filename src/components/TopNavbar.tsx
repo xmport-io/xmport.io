@@ -57,7 +57,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
         </div>
 
         {/* Desktop Spacer (Desktop uses the left vertical green bar) */}
-        <div className="hidden xl:block w-32" />
+        <div className="hidden xl:block w-24" />
       </div>
 
       {/* CENTER: TABLET REEL COUNTER 01/07 (PORTRAIT & LANDSCAPE TABLET - BLACK TEXT & BLACK BLINKING SQUARE) */}

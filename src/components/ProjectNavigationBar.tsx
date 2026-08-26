@@ -33,7 +33,7 @@ export const ProjectNavigationBar: React.FC<ProjectNavigationBarProps> = ({
       {/* Tactical Prefix Label on Large Screens */}
       <div 
         id="project-nav-prefix"
-        className="hidden xl:flex items-center px-3 sm:px-4 py-2 border-r border-[#262626] bg-[#080808] text-[10px] text-[#666666] uppercase whitespace-nowrap shrink-0 tracking-wider"
+        className="hidden xl:flex items-center justify-center px-3 py-2 border-r border-[#262626] bg-[#080808] text-[10px] text-[#666666] uppercase whitespace-nowrap shrink-0 tracking-wider w-24"
       >
         <span className="inline-block w-1.5 h-1.5 bg-[#9fff19] mr-2 animate-pulse" />
         INDEX

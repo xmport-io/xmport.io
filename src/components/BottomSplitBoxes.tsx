@@ -286,7 +286,11 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
                   className={`py-1.5 px-1.5 text-center text-[9px] sm:text-[10px] font-mono font-normal uppercase text-black cursor-pointer hover:bg-black hover:text-[#9fff19] transition-colors duration-75 truncate ${
                     isCopied ? 'bg-black text-[#9fff19]' : ''
                   } ${
-                    idx < SOCIAL_LINKS.length - 1 ? 'border-r border-black' : ''
+                    idx % 2 === 0 ? 'border-r border-black sm:border-r' : 'sm:border-r'
+                  } ${
+                    idx === 3 ? 'sm:border-r-0' : ''
+                  } ${
+                    idx < 2 ? 'border-b sm:border-b-0 border-black' : ''
                   }`}
                   title={link.isCopy ? `Click to copy: ${link.copyValue}` : `${link.label}: ${link.handle}`}
                 >
