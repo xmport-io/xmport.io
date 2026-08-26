@@ -89,7 +89,7 @@ export const TerminalTransmissionModal: React.FC<TerminalTransmissionModalProps>
             <div className="w-12 h-12 bg-[#9fff19] text-black text-2xl font-bold flex items-center justify-center">
               ✓
             </div>
-            <h3 className="text-xl font-display-oswald font-bold text-[#9fff19] tracking-wider uppercase">
+            <h3 className="text-xl font-bold font-mono text-[#9fff19] tracking-wider uppercase">
               TRANSMISSION BROADCAST SUCCESSFUL
             </h3>
             <p className="text-xs text-[#aaaaaa] max-w-md">

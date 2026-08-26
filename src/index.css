@@ -1,14 +1,6 @@
 @import "tailwindcss";
 
 @layer base {
-  :root {
-    --lime-neon: #9fff19;
-    --dark-bg: #000000;
-    --box-info: #101010;
-    --border-dim: #262626;
-    --border-mid: #333333;
-  }
-
   * {
     border-radius: 0px !important;
     box-sizing: border-box;
@@ -20,49 +12,6 @@
     font-family: 'Chivo Mono', monospace;
     overflow-x: hidden;
   }
-}
-
-/* Typography Classes */
-.font-mono-tech {
-  font-family: 'Chivo Mono', monospace;
-}
-
-.font-heading-sync {
-  font-family: 'Syncopate', sans-serif;
-  letter-spacing: -0.04em;
-}
-
-.font-display-oswald {
-  font-family: 'Oswald', sans-serif;
-  letter-spacing: -0.02em;
-}
-
-/* Subtle Tactical Grid Pattern */
-.bg-grid-tactical {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-.bg-dots-tactical {
-  background-image: radial-gradient(rgba(159, 255, 25, 0.15) 1px, transparent 0);
-  background-size: 20px 20px;
-}
-
-/* CRT Scanlines */
-.scanlines {
-  background: linear-gradient(
-    rgba(18, 16, 16, 0) 50%, 
-    rgba(0, 0, 0, 0.35) 50%
-  ), linear-gradient(
-    90deg,
-    rgba(255, 0, 0, 0.03),
-    rgba(0, 255, 0, 0.01),
-    rgba(0, 0, 255, 0.03)
-  );
-  background-size: 100% 3px, 6px 100%;
-  pointer-events: none;
 }
 
 /* Terminal Fast Blink */
@@ -90,27 +39,6 @@
   100% { opacity: 1; transform: translate(0, 0); }
 }
 
-/* Barcode / Hash Stripes */
-.tactical-stripes {
-  background: repeating-linear-gradient(
-    -45deg,
-    #9fff19,
-    #9fff19 6px,
-    #000000 6px,
-    #000000 12px
-  );
-}
-
-.tactical-stripes-dim {
-  background: repeating-linear-gradient(
-    -45deg,
-    #333333,
-    #333333 4px,
-    #111111 4px,
-    #111111 8px
-  );
-}
-
 /* Custom Scrollbar for terminal boxes */
 ::-webkit-scrollbar {
   width: 4px;
@@ -128,3 +56,4 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #9fff19;
 }
+

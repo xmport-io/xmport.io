@@ -2,52 +2,78 @@ import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { playTacticalBlip } from '../utils/audio';
 
-interface GalleryVideo {
+export interface GalleryVideo {
   id: string;
   title: string;
   embedUrl: string;
 }
 
-const GALLERY_VIDEOS: GalleryVideo[] = [
+export const GALLERY_VIDEOS: GalleryVideo[] = [
   {
-    id: 'video_01',
+    id: 'FRAMES_01',
     title: 'FEATURED REEL 01',
     embedUrl:
       'https://framerate.tv/embed/43ee9f07-4e4f-4415-a9f0-06863f8bdf45?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
   },
   {
-    id: 'video_02',
+    id: 'FRAMES_02',
     title: 'FEATURED REEL 02',
     embedUrl:
       'https://framerate.tv/embed/614feee3-64b9-47eb-a244-9c47008ce881?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
   },
+  {
+    id: 'FRAMES_03',
+    title: 'FEATURED REEL 03',
+    embedUrl:
+      'https://framerate.tv/embed/49cd0c01-a79e-476a-bffc-aa5ec7e2c273?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
+  },
+  {
+    id: 'FRAMES_04',
+    title: 'FEATURED REEL 04',
+    embedUrl:
+      'https://framerate.tv/embed/5371b083-3f70-4774-b15e-a86b69219a3d?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
+  },
+  {
+    id: 'FRAMES_05',
+    title: 'FEATURED REEL 05',
+    embedUrl:
+      'https://framerate.tv/embed/722e948d-b8be-4f83-82a9-ce904b099805?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
+  },
 ];
 
-export const HeroVisualCore: React.FC = () => {
-  const [currentIdx, setCurrentIdx] = useState<number>(0);
+interface HeroVisualCoreProps {
+  currentIdx: number;
+  onPrev: () => void;
+  onNext: () => void;
+}
 
+export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
+  currentIdx,
+  onPrev,
+  onNext,
+}) => {
   const handlePrev = () => {
     playTacticalBlip(1000, 0.03);
-    setCurrentIdx((prev) => (prev - 1 + GALLERY_VIDEOS.length) % GALLERY_VIDEOS.length);
+    onPrev();
   };
 
   const handleNext = () => {
     playTacticalBlip(1600, 0.03);
-    setCurrentIdx((prev) => (prev + 1) % GALLERY_VIDEOS.length);
+    onNext();
   };
 
-  const activeVideo = GALLERY_VIDEOS[currentIdx];
+  const activeVideo = GALLERY_VIDEOS[currentIdx] || GALLERY_VIDEOS[0];
 
   return (
     <section
       id="hero-visual-core"
       className="relative flex-1 min-h-0 w-full bg-[#000000] border-b border-[#333333] overflow-hidden flex items-center justify-center group/hero"
     >
-      {/* REEL INDICATOR HUD - TOP CENTER */}
+      {/* REEL INDICATOR HUD - TOP CENTER (HIDDEN IN MOBILE VIEW) */}
       <div 
         id="reel-indicator-badge"
         style={{ fontFamily: "'Chivo Mono', monospace" }}
-        className="absolute top-2.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none px-3 py-1 bg-black/80 border border-[#333333] text-[10px] sm:text-xs font-normal text-[#9fff19] tracking-widest uppercase flex items-center gap-2 backdrop-blur-sm shadow-sm"
+        className="hidden sm:flex absolute top-2.5 left-1/2 -translate-x-1/2 z-20 pointer-events-none px-3 py-1 bg-black/80 border border-[#333333] text-[10px] sm:text-xs font-normal text-[#9fff19] tracking-widest uppercase items-center gap-2 backdrop-blur-sm shadow-sm"
       >
         <span className="w-1.5 h-1.5 rounded-full bg-[#9fff19] animate-pulse"></span>
         <span style={{ fontFamily: "'Chivo Mono', monospace" }}>
