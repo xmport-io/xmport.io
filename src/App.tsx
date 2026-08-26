@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PROJECTS } from './data/projects';
 import { TopNavbar } from './components/TopNavbar';
 import { HeroVisualCore, GALLERY_VIDEOS } from './components/HeroVisualCore';
+import { ProjectNavigationBar } from './components/ProjectNavigationBar';
 import { BottomSplitBoxes } from './components/BottomSplitBoxes';
 import { playTacticalBlip } from './utils/audio';
 
@@ -54,6 +55,17 @@ export default function App() {
           currentIdx={currentReelIdx}
           onPrev={handlePrevReel}
           onNext={handleNextReel}
+        />
+
+        {/* FRAMES NAVIGATION BAR (ABOVE DIRECTORY & CONTACT BOX) */}
+        <ProjectNavigationBar
+          projects={PROJECTS}
+          currentIndex={currentReelIdx}
+          onSelectIndex={(idx) => {
+            setCurrentReelIdx(idx);
+            handleStartJourney();
+          }}
+          hasStarted={hasStarted}
         />
 
         {/* BOTTOM SPLIT BOXES (INFO READOUT & CONTACT ME ACTION) */}

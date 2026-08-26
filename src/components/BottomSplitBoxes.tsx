@@ -208,14 +208,13 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
            </div>
          </div>
 
-        {/* Primary Call to Action: Massive Bold "CONTACT ME" Button */}
+        {/* Primary Call to Action: Massive Bold "CONTACT" Button */}
         <div className="my-2 sm:my-3">
-          <a
+          <div
             id="action-contact-me-btn"
-            href="mailto:work@xmport.io"
             onClick={() => playSelectBuzz()}
             onMouseEnter={() => playTacticalBlip(1500, 0.03)}
-            className="block w-full text-left group cursor-pointer focus:outline-none"
+            className="block w-full text-left group cursor-default select-none focus:outline-none"
           >
             <div className="flex items-center justify-between">
               <span 
@@ -228,9 +227,9 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
                   fontWeight: 'normal' 
                 }}
               >
-                CONTACT ME
+                CONTACTS
               </span>
-              <span className="hidden sm:inline-block text-2xl sm:text-4xl font-normal text-black group-hover:translate-x-1.5 transition-transform duration-100 font-mono">
+              <span className="hidden sm:inline-block text-2xl sm:text-4xl font-normal text-black font-mono">
                 ↗
               </span>
             </div>
@@ -241,7 +240,7 @@ export const BottomSplitBoxes: React.FC<BottomSplitBoxesProps> = ({
             >
               INITIATE ENCRYPTED DIRECT TRANSMISSION // OPEN FOR PROJECTS & DIRECTIVES
             </p>
-          </a>
+          </div>
         </div>
 
         {/* =====================================================================
