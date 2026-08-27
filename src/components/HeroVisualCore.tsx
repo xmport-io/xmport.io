@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { playTacticalBlip, playSelectBuzz } from '../utils/audio';
 import { CokCrossLottie } from './CokCrossLottie';
+import { SquareLottie } from './SquareLottie';
 import { XmportLogo } from './XmportLogo';
 
 export interface GalleryVideo {
@@ -47,9 +48,13 @@ export const GALLERY_VIDEOS: GalleryVideo[] = [
     embedUrl:
       'https://framerate.tv/embed/1809aa9d-2b45-4773-869e-3fecbfef2ea8?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
   },
+];
+
+// Hidden videos pending NDA clearance:
+export const HIDDEN_GALLERY_VIDEOS: GalleryVideo[] = [
   {
     id: 'FRAMES_07',
-    title: 'FEATURED REEL 07',
+    title: 'FEATURED REEL 07 - ARC ROBOTICS',
     embedUrl:
       'https://framerate.tv/embed/5822e22e-4c43-495c-971a-f0cf1ef06ab7?primary_color=%2523ffffff&track_color=%2523ffffff&theme=minimal&autoplay=1&muted=1&loop=1',
   },
@@ -117,22 +122,62 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
       id="hero-visual-core"
       className="relative flex-1 min-h-0 w-full bg-[#000000] border-b border-[#333333] overflow-hidden flex items-center justify-center group/hero"
     >
-      {/* DESKTOP-ONLY LEFT VERTICAL GREEN (#9fff19) BAR WITH XMPORT LOGO */}
+      {/* DESKTOP-ONLY LEFT VERTICAL GREEN (#9fff19) BAR WITH XMPORT LOGO, LOTTIE & TURRET ROAD TEXT */}
       <aside
         id="hero-left-green-bar"
         aria-label="XMPORT Brand Bar"
         className="hidden xl:flex absolute top-0 bottom-0 left-0 w-24 bg-[#9fff19] z-50 flex-col items-center justify-between py-6 px-1 select-none pointer-events-none"
       >
         {/* XMPORT Logo in rich black sitting inside the green bar, rotated counter-clockwise */}
-        <div className="w-full h-36 flex items-center justify-center pt-2">
+        <div className="w-full h-32 flex items-center justify-center pt-2">
           <XmportLogo
             id="desktop-green-bar-xmport-logo"
             className="w-28 sm:w-32 h-auto fill-black -rotate-90 origin-center shrink-0"
           />
         </div>
 
-        {/* Bottom decorative anchor point */}
-        <div className="w-full" />
+        {/* First text block: MOTION & DESIGN DEVELOPMENT */}
+        <div className="w-full flex items-center justify-center py-2">
+          <div
+            className="text-black uppercase text-center -rotate-90 origin-center whitespace-nowrap"
+            style={{
+              fontFamily: "'Turret Road', sans-serif",
+              fontWeight: 800,
+              fontSize: '11px',
+              letterSpacing: '-0.02em',
+              lineHeight: '1.15',
+            }}
+          >
+            <div>MOTION &amp;</div>
+            <div>DESIGN DEVELOPMENT</div>
+          </div>
+        </div>
+
+        {/* Centered Lottie animation */}
+        <div className="w-full flex items-center justify-center py-1">
+          <SquareLottie className="w-12 h-12 shrink-0" />
+        </div>
+
+        {/* Second text block: CORE / PROTOCOL / STATUS / ADJUSTMENT EDEN IS CALLING */}
+        <div className="w-full flex items-center justify-center pb-3">
+          <div
+            className="text-black uppercase text-center -rotate-90 origin-center whitespace-nowrap"
+            style={{
+              fontFamily: "'Turret Road', sans-serif",
+              fontWeight: 800,
+              fontSize: '8px',
+              letterSpacing: '-0.01em',
+              lineHeight: '1.25',
+            }}
+          >
+            <div className="tracking-tighter">CORE: ACTIVE</div>
+            <div className="tracking-tighter">PROTOCOL X</div>
+            <div className="h-1.5" />
+            <div className="tracking-tighter">STATUS</div>
+            <div className="tracking-tighter">ADJUSTMENT EDEN</div>
+            <div className="tracking-tighter">IS CALLING</div>
+          </div>
+        </div>
       </aside>
 
       {/* INITIAL VISITOR INTRO SPLASH OVERLAY */}
