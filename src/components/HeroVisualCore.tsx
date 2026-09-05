@@ -136,10 +136,10 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
           />
         </div>
 
-        {/* First text block: MOTION & DESIGN DEVELOPMENT */}
+        {/* First text block: MOTION & DESIGN DEVELOPMENT (aligned right) */}
         <div className="w-full flex items-center justify-center py-2">
           <div
-            className="text-black uppercase text-center -rotate-90 origin-center whitespace-nowrap"
+            className="text-black uppercase text-right -rotate-90 origin-center whitespace-nowrap"
             style={{
               fontFamily: "'Turret Road', sans-serif",
               fontWeight: 800,
@@ -158,10 +158,10 @@ export const HeroVisualCore: React.FC<HeroVisualCoreProps> = ({
           <SquareLottie className="w-12 h-12 shrink-0" />
         </div>
 
-        {/* Second text block: CORE / PROTOCOL / STATUS / ADJUSTMENT EDEN IS CALLING */}
+        {/* Second text block: CORE / PROTOCOL / STATUS / ADJUSTMENT EDEN IS CALLING (aligned left) */}
         <div className="w-full flex items-center justify-center pb-3">
           <div
-            className="text-black uppercase text-center -rotate-90 origin-center whitespace-nowrap"
+            className="text-black uppercase text-left -rotate-90 origin-center whitespace-nowrap"
             style={{
               fontFamily: "'Turret Road', sans-serif",
               fontWeight: 800,
